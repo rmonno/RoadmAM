@@ -7,7 +7,10 @@
 #	@description: backup module
 ###
 
-#inform user
+# error not allowed upgrade!
+error "Not Allowed upgrade action! [for now :-)]"
+
+#inforr user
 printHeader "info#" "Using default backup module..."
 
 #Do a backup of the Database and files

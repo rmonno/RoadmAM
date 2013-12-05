@@ -7,12 +7,14 @@
 #	@description: rollback module 
 ###
 
+printHeader "info#" "Not needed any actions here! [for now :-)]"
+
 #inform user
-printHeader "info#" "Using default rollback module..."
+#printHeader "info#" "Using default rollback module..."
 
-print "Using contents of $BACKUP_PATH folder to restore previous status..."
+#print "Using contents of $BACKUP_PATH folder to restore previous status..."
 
-sleep 2
+#sleep 2
 
 #Don't forget to restart application
-print "Restarting rolledback application..."
+#print "Restarting rolledback application..."
