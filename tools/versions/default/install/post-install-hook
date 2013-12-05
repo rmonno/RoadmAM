@@ -1,17 +1,20 @@
 #!/bin/bash
 
 ###
-#       @author: msune
-#	@organization: i2CAT
-#	@project: Ofelia FP7
+#   @author: roberto monno, msune
+#	@organization: NXW, i2CAT
+#	@project: FIBRE FP7, Ofelia FP7
 #	@description: post-install module
 ###
 
 #Inform user
-printHeader "info#" "Using default post-install-hook module..."
+printHeader "info#" "Using post-install-hook module..."
 
-#Starting apache
-print "Starting application..."
+#Starting roadm-am
+print "Starting Roadm-AM application..."
+local DEST_DIR=${DESTINATION_DIR:-'../src'}
+local PYTHON=`which python`
+$PYTHON $DEST_DIR/src/main.py || error "Unable to start the main plugin!"
 
 sleep 2
 
