@@ -1,13 +1,49 @@
 #!/bin/bash
 
-#!/bin/bash
-
 ###
-#       @author: msune
-#	@organization: i2CAT
-#	@project: Ofelia FP7
+#   @author: roberto monno, msune
+#	@organization: NXW, i2CAT
+#	@project: FIBRE FP7, Ofelia FP7
 #	@description: application repository download code. Note that this is only used if OFVER_IN_BRANCH == 0 
 ###
 
-#/usr/bin/git clone http://somewhere.com/git
-error "Change-me. Modify this file to include clone&install commands (git clone, svn co...) for downloading APPLICATION code."
+local GIT=`which git`
+if [[ "$GIT"x == ""x ]]; then
+    error "Please, you should install git into your system!"
+fi
+
+local LS=`which ls`
+local REPO=${REPOSITORY:-'https://github.com/rmonno/AMsoil'}
+local BRANCH=${REPOSITORY_BRANCH:-'origin/development_04'}
+local DEST_DIR=${DESTINATION_DIR:-'../src'}
+
+printHeader "info#" "Downloading $REPO (if necessary)..."
+
+function git_clone() {
+    if [ ! "$($LS -A $DEST_DIR)" ]; then
+        printHeader "info#" "Cloning amsoil-repo from $REPO into $DEST_DIR"
+        $GIT clone $REPO $DEST_DIR || error "Unable to clone $REPO"
+    else
+        print "$REPO already cloned..."
+    fi
+}
+
+function git_checkout2branch() {
+    cd $DEST_DIR
+
+    local b_name=`$GIT rev-parse --abbrev-ref HEAD`
+    if [[ "$BRANCH" != *"$b_name" ]]; then
+        printHeader "info#" "Checkout to branch $BRANCH"
+        $GIT checkout --track $BRANCH || error "Unable to checkout to $BRANCH"
+    else
+        print "$REPO already into $b_name branch..."
+    fi
+
+    cd - >/dev/null
+}
+
+# git-clone
+git_clone
+
+# git-checkout
+git_checkout2branch
