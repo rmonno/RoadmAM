@@ -1,0 +1,18 @@
+#!/bin/bash
+
+###
+#       @author: msune
+#	@organization: i2CAT
+#	@project: Ofelia FP7
+#	@description: Version checkings 
+###
+
+#inform user
+printHeader "info#" "Using default upgrade module..."
+
+#Calling procedure1 (will rollback in case of error)
+loadModule lib/procedure1 
+
+#Calling procedure2
+loadModule lib/procedure2 
+

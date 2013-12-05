@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#!/bin/bash
+
+###
+#       @author: msune
+#	@organization: i2CAT
+#	@project: Ofelia FP7
+#	@description: application repository download code. Note that this is only used if OFVER_IN_BRANCH == 0 
+###
+
+#/usr/bin/git pull
+echo /usr/bin/git pull
+#error "Change-me. Modify this file to include upgrade commands (git pull, svn update...) for updating APPLICATION code."

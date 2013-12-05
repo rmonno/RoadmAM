@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#Procedure1 Routine
+
+printHeader ">" "Executing procedure1..."
+print ""
+
+print "Doing some random stuff (1)... For instance upgrading schema and performing some manual SQL  queries"
+
+sleep 2
+

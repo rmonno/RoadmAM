@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#Procedure2 Routine
+
+printHeader ">" "Executing procedure2..."
+print ""
+
+print "Doing some random stuff (2)... For instance, doing some file work..."
+
+sleep 1
+

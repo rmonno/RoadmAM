@@ -1,0 +1,18 @@
+#!/bin/bash
+
+###
+#       @author: msune
+#	@organization: i2CAT
+#	@project: Ofelia FP7
+#	@description: rollback module 
+###
+
+#inform user
+printHeader "info#" "Using default rollback module..."
+
+print "Using contents of $BACKUP_PATH folder to restore previous status..."
+
+sleep 2
+
+#Don't forget to restart application
+print "Restarting rolledback application..."

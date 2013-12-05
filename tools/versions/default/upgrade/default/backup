@@ -1,0 +1,17 @@
+#!/bin/bash
+
+###
+#       @author: msune
+#	@organization: i2CAT
+#	@project: Ofelia FP7
+#	@description: backup module
+###
+
+#inform user
+printHeader "info#" "Using default backup module..."
+
+#Do a backup of the Database and files
+print "Doing a backup of the files and/or Database..."
+print 'Saving contents using the built-in variable $BACKUP_PATH, with the value of:'"$BACKUP_PATH"
+sleep 2
+

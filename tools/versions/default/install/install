@@ -1,0 +1,30 @@
+#!/bin/bash
+
+###
+#       @author: msune
+#	@organization: i2CAT
+#	@project: Ofelia FP7
+#	@description: install module 
+###
+
+#Inform user
+printHeader "info#" "Using default install module..."
+
+##Main routing
+
+#Install dependencies
+printHeader ">" "Installing dependencies through apt-get(emulating)..."
+
+#Loading dependencies. Note that loadModule will load specific version dependencies file if exists
+loadModule lib/dependencies $NO_RESCUE
+print "/usr/bin/apt-get update" 
+print "/usr/bin/apt-get -y install $DEBIAN_DEPENDENCIES" || error "Could not install dependencies (apt-get)" $NO_RESCUE 
+
+
+#Calling procedure1 (don't call rollback in case of error)
+loadModule lib/procedure1 $NO_RESCUE
+
+#Calling procedure2
+loadModule lib/procedure2 $NO_RESCUE
+
+

@@ -1,0 +1,26 @@
+#!/bin/bash 
+
+###
+#	@author: msune
+#	@organization: i2CAT
+#	@project: Ofelia FP7
+#       @description: script for upgrading ofver code (and application code if you are using ofver in-branch). This can be as simple as a 'git pull' or 'svn update', for instance.
+###
+
+#Example
+#/usr/bin/git pull 
+echo /usr/bin/git pull
+
+CURRENT_VERSION=`cat $PWD/../version`
+
+#This emulates jumping from release to release in demo branch of ofver
+if [ "$CURRENT_VERSION" == "0.1" ]; then 
+	git checkout demoVersion2
+elif [ "$CURRENT_VERSION" == "0.2" ]; then 
+	git checkout demoVersion3
+elif [ "$CURRENT_VERSION" == "0.3" ]; then 
+	git checkout demoVersion4
+else
+	error "I don't know what to do more... Demo is over :(. Check the project website for more information: http://code.google.com/p/ofver"
+fi
+#error 'You haven't yet setup the way ofver should be upgrading himself. Modify the file $ROOT_OFVER_FOLER/repo to do so' $NO_RESCUE 

@@ -1,0 +1,21 @@
+#!/bin/bash
+
+###
+#       @author: msune
+#	@organization: i2CAT
+#	@project: Ofelia FP7
+#	@description: post-upgrade-hook module 
+###
+
+#inform user
+printHeader "info#" "Using SPECIFIC 0.3 post-upgrade-hook module..."
+
+#Starting apache
+
+print "To install v0.3 we need to do something special before starting application again... Doing it!"
+
+sleep 2
+
+print "Starting application..."
+
+sleep 1

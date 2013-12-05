@@ -1,0 +1,20 @@
+ROADM Aggregate Manager v0.1 README
+------------------------------------
+<put a brief description here>
+
+
+Install
+--------
+sudo ./ofver install
+
+
+License
+--------
+Software is under L-GPL v3 license. Please check LICENSE file included.
+
+
+Authorship
+----------
+The Roadm Aggregate Manager has been developed as part of the FIBRE (WP3) FP7 project.
+
+Contact r.monno@nextworks for further information. 
