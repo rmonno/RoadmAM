@@ -2,10 +2,58 @@
 
 #Procedure1 Routine
 
-printHeader ">" "Executing procedure1..."
-print ""
+printHeader ">" "Executing configuration of ROADM DB..."
 
-print "Doing some random stuff (1)... For instance loading a new DB schema"
+print "Generating certificates..."
 
-sleep 2
+local DEST_DIR=${DESTINATION_DIR:-'../src'}
+local FIND=`which find`
+local gen_certs_exe=`$FIND $DEST_DIR -name "gen-certs.py"`
+local PYTHON=`which python`
 
+$PYTHON $gen_certs_exe $DEST_DIR/admin
+
+print "Starting ROADM-AM server..."
+local SERVICE=`which service`
+$SERVICE RoadmAMService start
+
+local SLEEP_T=${SLEEP_TIME:-2}
+local SLEEP=`which sleep`
+
+local db_dir=${ROADM_DB_DIR:-'/opt/amsoil'}
+local db_dump_stat=${ROADM_DB_DUMP_STAT:-0}
+local res_timeout=${ROADM_RES_TIMEOUT:-'600'}
+local opennaas_addr=${ROADM_OPENNAAS_ADDRESS:-'localhost'}
+local opennaas_port=${ROADM_OPENNAAS_PORT:-'8888'}
+local opennaas_user=${ROADM_OPENNAAS_USER:-'admin'}
+local opennaas_pswd=${ROADM_OPENNAAS_PASSWORD:-'123456'}
+local opennaas_up_time=${ROADM_OPENNAAS_UP_TIME:-'5'}
+local opennaas_up_step=${ROADM_OPENNAAS_UP_STEP:-'100'}
+local check_expire=${ROADM_EXPIRE_TIMEOUT:-'60'}
+local check_creds=${ROADM_CHECK_CREDS:-0}
+
+$SLEEP $SLEEP_T
+
+cd $DEST_DIR/admin
+
+$PYTHON config_client.py --set=opennaas.db_dir=$db_dir
+$PYTHON config_client.py --set=opennaas.db_dump_stat=$db_dump_stat
+$PYTHON config_client.py --set=opennaas.reservation_timeout=$res_timeout
+$PYTHON config_client.py --set=opennaas.server_address=$opennaas_addr
+$PYTHON config_client.py --set=opennaas.server_port=$opennaas_port
+$PYTHON config_client.py --set=opennaas.user=$opennaas_user
+$PYTHON config_client.py --set=opennaas.password=$opennaas_pswd
+$PYTHON config_client.py --set=opennaas.update_timeout=$opennaas_up_time
+$PYTHON config_client.py --set=opennaas.update_step=$opennaas_up_step
+$PYTHON config_client.py --set=opennaas.check_expire_timeout=$check_expire
+$PYTHON config_client.py --set=opennaas.check_credentials=$check_creds
+
+cd - >/dev/null
+
+print "Stopping ROADM-AM server..."
+$SERVICE RoadmAMService stop
+
+if [ ! -d $db_dir ]; then 
+    local MKDIR=`which mkdir`
+    $MKDIR $db_dir
+fi
