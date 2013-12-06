@@ -2,16 +2,41 @@ ROADM Aggregate Manager v0.1 README
 ------------------------------------
 <put a brief description here>
 
+Configuration variables
+------------------------
+If you want to customize your installation for some reasons, you can modify the script variables as global environment variables.
+Here a list of configurable variables and their default value.
+
+* ROADM_DB_DIR = /opt/amsoil
+* ROADM_DB_DUMP_STAT = 0
+* ROADM_RES_TIMEOUT = 600
+* ROADM_OPENNAAS_ADDRESS = localhost
+* ROADM_OPENNAAS_PORT = 8888
+* ROADM_OPENNAAS_USER = admin
+* ROADM_OPENNAAS_PASSWORD = 123456
+* ROADM_OPENNAAS_UP_TIME = 5
+* ROADM_OPENNAAS_UP_STEP = 100
+* ROADM_EXPIRE_TIMEOUT = 60
+* ROADM_CHECK_CREDS = 0
+
+* REPOSITORY = https://github.com/rmonno/AMsoil
+* REPOSITORY_BRANCH = origin/development_04
 
 Install
 --------
 sudo ./ofver install
 
+or, if you want to configure something (e.g ROADM_CHECK_CREDS):
+
+sudo ROADM_CHECK_CREDS=1 ./ofver install
+
+Upgrade
+--------
+It is not supported, yet.
 
 License
 --------
 Software is under L-GPL v3 license. Please check LICENSE file included.
-
 
 Authorship
 ----------
