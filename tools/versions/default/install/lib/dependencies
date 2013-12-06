@@ -2,6 +2,6 @@
 
 #Used to define package dependencies
 
-DEBIAN_DEPENDENCIES="python-pip python-setuptools python-dev python-m2crypto python-openssl python-flup nginx"
-PIP_DEPENDENCIES="SQLAlchemy flask Flask-XML-RPC python-dateutil blinker pika"
+DEBIAN_DEPENDENCIES="python-pip python-setuptools python-dev python-m2crypto python-openssl python-flup nginx python-lxml"
+PIP_DEPENDENCIES="SQLAlchemy flask Flask-XML-RPC python-dateutil blinker pika requests fysom"
 EASY_INSTALL_DEPENDENCIES=""

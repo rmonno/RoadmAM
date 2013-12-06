@@ -11,11 +11,13 @@
 printHeader "info#" "Using post-install-hook module..."
 
 #Starting roadm-am
-print "Starting Roadm-AM application..."
-local DEST_DIR=${DESTINATION_DIR:-'../src'}
-local PYTHON=`which python`
-$PYTHON $DEST_DIR/src/main.py || error "Unable to start the main plugin!"
+print "Starting Roadm-AM application (as a daemon)..."
 
-sleep 2
+local SERVICE=`which service`
+$SERVICE RoadmAMService start
 
-print "Here you could clean the house..."
+local SLEEP_T=${SLEEP_TIME:-5}
+local SLEEP=`which sleep`
+
+print "Starting Roadm-AM Worker application (as a daemon)..."
+$SERVICE RoadmAMServiceWorker start
